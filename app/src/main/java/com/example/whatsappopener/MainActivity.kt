@@ -17,6 +17,7 @@ class MainActivity : AppCompatActivity() {
         if(intent.action == Intent.ACTION_PROCESS_TEXT)
         {
             number = intent.getCharSequenceExtra(Intent.EXTRA_PROCESS_TEXT).toString()
+            number = number.replace("\\s".toRegex(), "")
         }
 
         if((number[0] == '+' && number.substring(1).isDigitsOnly()) || number.isDigitsOnly())
@@ -26,6 +27,7 @@ class MainActivity : AppCompatActivity() {
         else
         {
             Toast.makeText(this, "Please Check the Number", Toast.LENGTH_SHORT).show()
+            finish()
         }
     }
 
